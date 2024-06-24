@@ -1,45 +1,59 @@
-# .mov to .mp4 Converter
+# electron-app-wdio-mocha-testing
+ Focusing on converting MOV files to MP4 format. The tests are implemented using WebdriverIO for browser automation and Mocha as the testing framework. This setup ensures robust testing of the application's conversion logic and user interface interactions, providing confidence in its functionality across different environments.
+Testing Framework:
+WDIO and Mocha
 
-This is a simple Electron app that converts .mov files to .mp4 using ffmpeg.
+## Overview
 
-<img width="600" src="https://user-images.githubusercontent.com/4718399/29245538-260cc8d2-7fab-11e7-8c9e-1a26676d1931.png">
+This repository contains automated tests for an Electron application developed by mblink, focusing on converting MOV video files to MP4 format. The tests are implemented using WebdriverIO for browser automation and Mocha as the test framework. This setup ensures robust testing of the application's conversion logic and user interface interactions.
 
-## Install
+## Features
+Test Structure
+The tests are organized using Mocha's describe-it syntax within WebdriverIO's test runner. Here's a breakdown of the main test scenarios:
 
-Check [the installation docs](https://github.com/mblink/mov-to-mp4-converter/blob/master/doc/installation.md) for installation
-instructions.
+- Display Main Elements:
 
-## Development
+Checks visibility of key UI components (#select-input, #select-output, #convert).
 
-To get started and launch the app, run:
+- Open File Dialogs:
+
+Verifies that clicking on input and output file buttons triggers the file dialogs.
+
+- Conversion Process:
+
+Tests the entire conversion workflow, including disabling the convert button, displaying progress, and verifying successful completion.
+
+- Test Environment Configuration
+Ensure your wdio.conf.js is correctly configured for your Electron application. Adjust capabilities, test specs, and reporters as needed for your project setup.
+
+## Unit Testing Without WDIO using mocha and jest
+
+- Utility Functions: Tests ensure that the utility functions (timeStrToSec and fitToMaxDimensions) behave correctly under various input scenarios.
+
+- File Selection: Tests verify the interaction between UI elements and the Electron framework's dialog API for selecting files.
+
+## Prerequisites
+
+Before running the tests, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) and npm (Node Package Manager)
+- WebdriverIO (`@wdio/cli`) and Mocha (`mocha`) installed globally or locally
+- Dependencies for the Electron application installed (`npm install`)
+
+## Installation
+
+Clone the repository and install dependencies:
 
 ```bash
-$ npm install
-$ npm start
+git clone <repository-url>
+cd <repository-folder>
+npm install
 ```
-
-[`electron-debug`](https://github.com/sindresorhus/electron-debug) is installed, so you can hit F12 to open the
-developer tools. When you change files, you can reload the app with `cmd-R`.
-
-## Deployment
-
-To publish the app to GitHub as a new release, you need to do a few things:
-
-1. Create a 'Mac Developer' code signing identity by following the 'Creating Signing Identities' instructions here: https://goo.gl/9huSjR
-2. Set the `GH_TOKEN` environment variable to a GitHub access token that has the `repo` scope. If you need to generate a new access token, you can do so
-[here](https://github.com/settings/tokens/new).
-    1. You can put this in a file called `.env` like so:
-    ```
-    GH_TOKEN=XXXXX
-    ```
-
-    2. Or you can export it on the command line:
-    ```bash
-    $ export GH_TOKEN=XXXXX
-    ```
-3. Run:
+To run WDIO tests Use the command
 ```bash
-$ npm run publish
+npm run wdio
 ```
-4. Go to [the releases page](https://github.com/mblink/mov-to-mp4-converter/releases) and publish the drafted
-release
+To run the unit tests use the command 
+```bash
+npm test
+```
