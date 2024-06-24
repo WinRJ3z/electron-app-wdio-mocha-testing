@@ -1,4 +1,4 @@
-# electron-app-wdio-mocha-testing(CODES PRESENT in master branch)
+# electron-app-wdio-mocha-testing(codes present in master branch)
  Focusing on converting MOV files to MP4 format. The tests are implemented using WebdriverIO for browser automation and Mocha as the testing framework. This setup ensures robust testing of the application's conversion logic and user interface interactions, providing confidence in its functionality across different environments.
 Testing Framework:
 WDIO and Mocha
