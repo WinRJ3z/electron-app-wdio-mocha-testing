@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if ! security find-identity -v -p codesigning | grep 'Mac Developer'; then
+  echo "Couldn't find a 'Mac Developer' signing identity"
+  echo "Follow the 'Creating Signing Identities instructions here to create one: https://goo.gl/9huSjR"
+  exit 1
+fi
+
+if [ -f .env ]; then
+  set -o allexport
+  source .env
+  set +o allexport
+fi
+
+if [ -z "$GH_TOKEN" ]; then
+  echo 'You must set the GH_TOKEN environment variable.'
+  echo 'See README.md for more details.'
+  exit 1
+fi
+
+# This will build, package and upload the app to GitHub.
+$(npm bin)/electron-builder --mac --publish always
